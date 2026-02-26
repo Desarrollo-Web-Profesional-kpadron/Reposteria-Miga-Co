@@ -1,14 +1,9 @@
 const router = require('express').Router();
-const Usuario = require('../models/Usuario');
+const usuarioController = require('../controllers/usuarios.controller');
 
-router.post('/', async (req, res) => {
-  const usuario = await Usuario.create(req.body);
-  res.json(usuario);
-});
-
-router.get('/', async (req, res) => {
-  const usuarios = await Usuario.find();
-  res.json(usuarios);
-});
+router.post('/register', usuarioController.register);
+router.post('/login', usuarioController.login);
+router.post('/:userId/direccion', usuarioController.agregarDireccion);
+router.get('/:userId/perfil', usuarioController.getPerfil);
 
 module.exports = router;
