@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const ProductoSchema = new Schema({
   nombre: String,
@@ -6,27 +6,32 @@ const ProductoSchema = new Schema({
   subcategoria: String,
   tipo_producto: {
     type: String,
-    enum: ['preparado', 'materia_prima']
+    enum: ["preparado", "materia_prima"],
   },
   descripcion: String,
   precio: Number,
   stock: {
     sucursal_centro: Number,
-    sucursal_norte: Number
+    sucursal_norte: Number,
   },
   multimedia: {
-    fotos_exterior: [String]
+    fotos_exterior: [String],
   },
+  ingredientes: [String], // nueva lista de ingredientes
+  porcion: String, // porción o presentación
+  conservacion: String, // recomendaciones de conservación
   ficha_sensorial: {
     dulzor: Number,
-    alergenos: [String]
+    textura: Number, // nivel de textura (0‑5)
+    intensidad: Number, // intensidad de sabor (0‑5)
+    alergenos: [String],
   },
   personalizable: {
     permite_mensaje: Boolean,
     rellenos_disponibles: [String],
-    coberturas_disponibles: [String]
+    coberturas_disponibles: [String],
   },
-  tags: [String]
+  tags: [String],
 });
 
-module.exports = model('Producto', ProductoSchema);
+module.exports = model("Producto", ProductoSchema);
